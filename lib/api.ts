@@ -9,8 +9,11 @@ import {
   ApiErrorResponse
 } from '@/types/chat';
 
-export const API_BASE_URL = 'https://frontend-task-chatapp.onrender.com/api';
-export const ROOT_URL = 'https://frontend-task-chatapp.onrender.com';
+export const ROOT_URL =
+  process.env.NEXT_PUBLIC_API_ROOT_URL || 'https://frontend-task-chatapp.onrender.com';
+
+export const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || `${ROOT_URL}/api`;
 
 class ApiClient {
   private token: string | null = null;
