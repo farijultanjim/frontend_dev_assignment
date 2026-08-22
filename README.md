@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NexusChat — Real-Time Messaging Platform
 
-## Getting Started
+> **Frontend Developer Take-Home Assignment Submission**  
+> Built with Next.js 16 (App Router), React 19, TypeScript 5, Tailwind CSS v4, Socket.io Client, and Framer Motion.
 
-First, run the development server:
+---
 
+## 🌟 Submission Overview
+
+This repository contains the complete three-part implementation for the Take-Home Assignment:
+
+- **Part 1: API Documentation & Feature Implementation**
+  - **API Documentation**: Formally specified REST and WebSocket protocol in [`docs/API_DOCUMENTATION.md`](./docs/API_DOCUMENTATION.md) and an interactive in-app explorer at [`/docs`](http://localhost:3000/docs).
+  - **Full Chat Application**: Real-time 1-on-1 and group messaging with smart scroll-lock, cursor pagination, optimistic UI updates, and group administration at [`/chat`](http://localhost:3000/chat).
+- **Part 2: Creative Showcase Landing Page**
+  - High-end, responsive landing page featuring an interactive live sandbox chat widget, Bento Grid feature deep dives, and architectural diagrams at [`/`](http://localhost:3000/).
+- **Part 3: Thought Process & Engineering Architecture**
+  - Detailed write-up covering architectural rationale, state management trade-offs, live API quirks and edge cases, honest AI usage disclosure, and future roadmap in [`docs/THOUGHT_PROCESS.md`](./docs/THOUGHT_PROCESS.md).
+
+---
+
+## 🚀 Quick Start & Local Run
+
+### 1. Prerequisites
+- **Node.js**: v18.18+ or v20+ recommended
+- **Package Manager**: `npm`, `yarn`, or `pnpm`
+
+### 2. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Start Development Server
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Build for Production
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 👥 Test Personas (Quick Login)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+When logging in at [`/login`](http://localhost:3000/login), you can click on any test persona card for instant pre-filling:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Persona | Name | Phone Number |
+| :--- | :--- | :--- |
+| **Lead Developer** | Alex Johnson | `+12345678901` |
+| **Product Manager** | Sarah Connor | `+12345678902` |
+| **Frontend Engineer** | Elena Rostova | `+8801700000001` |
 
-## Deploy on Vercel
+*Note: Entering any other phone number will automatically create and register a new user.*
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Key Technical Features & Edge Case Handling
+
+1. **Smart Auto-Scroll Engine**:
+   - Auto-scrolls to the newest message upon initial entry and when the current user sends a message.
+   - Detects when the user has scrolled up to read earlier history and locks the viewport without force-scrolling.
+   - Displays a floating `↓ New messages below` notification button when peer messages arrive while scrolled up.
+2. **Cursor Pagination with Anchor Preservation**:
+   - Older messages are fetched with `before=<oldest_message_id>`.
+   - Scroll position is mathematically preserved (`container.scrollTop += heightDifference`) to prevent jumping.
+3. **Duplex WebSocket & Resilient REST Fallback**:
+   - Socket.io listens for `message:new` and `conversation:updated` in real time with automatic reconnect.
+   - Outgoing messages use optimistic UI updates with immediate feedback.
+4. **Group Governance**:
+   - Group creation requires a minimum of 2 other participants (3 total members).
+   - Admin capabilities include group renaming, member additions, promotions to admin, and member removals.
+5. **Senior Power-User Touches**:
+   - Global `Cmd/Ctrl + K` Command Palette.
+   - Zero-dependency Web Audio API synthesizer for sound effects (with mute toggle).
+   - Rich Markdown code block formatting and inline emoji reactions.
+
+---
+
+## 📚 Deliverable Files
+
+- [`docs/API_DOCUMENTATION.md`](./docs/API_DOCUMENTATION.md) — Comprehensive API reference and Socket.io protocol.
+- [`docs/THOUGHT_PROCESS.md`](./docs/THOUGHT_PROCESS.md) — Architectural reasoning, trade-offs, API audit, and AI disclosure.
+- [`PROJECT_PLAN.md`](./PROJECT_PLAN.md) — Step-by-step task breakdown and milestone verification.
