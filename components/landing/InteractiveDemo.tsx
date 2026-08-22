@@ -98,47 +98,58 @@ export function InteractiveDemo() {
   return (
     <div className="relative mx-auto w-full max-w-2xl rounded-3xl border border-zinc-800 bg-zinc-900/90 shadow-2xl backdrop-blur-xl overflow-hidden">
       {/* Top Demo Bar */}
-      <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-3.5 bg-zinc-950/60">
-        <div className="flex items-center gap-3">
-          <Avatar name="Design & Engineering Hub" size="md" id="demo_hub" />
-          <div>
-            <div className="flex items-center gap-2">
-              <h4 className="text-sm font-bold text-white">Engineering Hub</h4>
-              <Badge variant="primary" size="sm">
-                <Users className="h-3 w-3" />
-                <span>3 online</span>
-              </Badge>
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-b border-zinc-800 px-4 sm:px-5 py-3 sm:py-3.5 bg-zinc-950/70">
+        <div className="flex items-center justify-between sm:justify-start gap-3 min-w-0">
+          <div className="flex items-center gap-3 min-w-0">
+            <Avatar name="Design & Engineering Hub" size="md" id="demo_hub" />
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <h4 className="text-xs sm:text-sm font-bold text-white whitespace-nowrap truncate">Engineering Hub</h4>
+                <Badge variant="primary" size="sm" className="shrink-0 hidden xs:inline-flex">
+                  <Users className="h-3 w-3" />
+                  <span>3 online</span>
+                </Badge>
+              </div>
+              <p className="text-[10px] sm:text-[11px] text-zinc-400 flex items-center gap-1.5 whitespace-nowrap">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                <span className="truncate">Interactive Live Preview</span>
+              </p>
             </div>
-            <p className="text-[11px] text-zinc-400 flex items-center gap-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Interactive Live Preview</span>
-            </p>
           </div>
+
+          <Badge variant="primary" size="sm" className="shrink-0 xs:hidden">
+            <Users className="h-3 w-3" />
+            <span>3</span>
+          </Badge>
         </div>
 
         {/* Persona Switcher */}
-        <div className="flex items-center gap-1.5 rounded-xl bg-zinc-900 p-1 border border-zinc-800 text-xs">
-          <span className="text-[10px] text-zinc-500 px-1 font-semibold uppercase">Chatting as:</span>
-          <button
-            onClick={() => setActivePersona('alex')}
-            className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition ${
-              activePersona === 'alex'
-                ? 'bg-indigo-600 text-white shadow-xs'
-                : 'text-zinc-400 hover:text-zinc-200'
-            }`}
-          >
-            Alex
-          </button>
-          <button
-            onClick={() => setActivePersona('sarah')}
-            className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition ${
-              activePersona === 'sarah'
-                ? 'bg-indigo-600 text-white shadow-xs'
-                : 'text-zinc-400 hover:text-zinc-200'
-            }`}
-          >
-            Sarah
-          </button>
+        <div className="flex items-center justify-between sm:justify-end gap-1.5 rounded-xl bg-zinc-900/90 p-1 border border-zinc-800 text-xs shrink-0">
+          <span className="text-[10px] text-zinc-400 px-1.5 font-semibold uppercase tracking-wider whitespace-nowrap">
+            Chatting as:
+          </span>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setActivePersona('alex')}
+              className={`rounded-lg px-2.5 py-1 text-xs font-semibold whitespace-nowrap transition ${
+                activePersona === 'alex'
+                  ? 'bg-indigo-600 text-white shadow-xs'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              Alex
+            </button>
+            <button
+              onClick={() => setActivePersona('sarah')}
+              className={`rounded-lg px-2.5 py-1 text-xs font-semibold whitespace-nowrap transition ${
+                activePersona === 'sarah'
+                  ? 'bg-indigo-600 text-white shadow-xs'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              Sarah
+            </button>
+          </div>
         </div>
       </div>
 
